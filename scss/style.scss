@@ -1,0 +1,1134 @@
+@charset "UTF-8";
+/*
+  Theme Name: portfolio-1
+  Author: haru_zyohatu
+  Description: wordpress template for your portfolio site
+*/
+// ====================================
+// 変数
+// ====================================
+// フォント
+//$font-family_default: 游ゴシック体, 'Yu Gothic', YuGothic, 'ヒラギノ角ゴシック Pro', 'Hiragino Kaku Gothic Pro', メイリオ, Meiryo, Osaka, 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif;
+$font-family_default: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, 游ゴシック体, 'Yu Gothic', YuGothic, 'ヒラギノ角ゴシック Pro', 'Hiragino Kaku Gothic Pro', メイリオ, Meiryo, Osaka, 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif;
+$font-family_logo: 'Srisakdi', cursive;
+//$font-family_en: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Fira Sans,Droid Sans,Helvetica Neue,sans-serif;
+
+
+// フォントカラー
+$font-color_default: #333;
+
+// カラー
+$color_default: #333;
+
+// フォントサイズ
+$font-size_s: 1rem;
+$font-size_m: 1.4rem;
+$font-size_default: 1.6rem;
+$font-size_l: 2.6rem;
+$font-size_xl: 4.2rem;
+$font-size_xxl: 11rem;
+$font-size_xxl: 18rem;
+
+// ラッパーサイズ
+$site-width_large: 960px;
+$site-width_default: 1080px;
+
+// 間隔
+$space_s: 5px;
+$space_m: 10px;
+$space_l: 15px;
+$space_xl: 20px;
+$space_xxl: 30px;
+$space_3l: 40px;
+
+// ブレークポイント
+$breakpoints: (
+        'sm': 'screen and (max-width: 414px)',
+        'md': 'screen and (max-width: 768px)',
+        'lg': 'screen and (max-width: 1000px)',
+        'xl': 'screen and (max-width: 1200px)',
+) !default;
+
+
+// ====================================
+// mixin
+// ====================================
+// スマートフォンブレークポイント
+@mixin mq($breakpoint: sm) {
+  @media #{map-get($breakpoints, $breakpoint)} {
+    @content;
+  }
+}
+
+// 複数行省略
+@mixin text-truncate($font-size, $line-height, $line, $bg) {
+  position: relative;
+  max-height: $font-size * $line-height * $line + px;
+  font-size: $font-size + px;
+  line-height: $line-height;
+  word-break: break-all;
+  overflow: hidden;
+  &::before,
+  &::after {
+    position: absolute;
+    background: $bg;
+  }
+  &::before {
+    content: '...';
+    top: $font-size * $line-height * ($line - 1) + px;
+    right: 7px;
+    width: 1em;
+  }
+  &::after {
+    content: '';
+    width: 100%;
+    height: 100%;
+  }
+}
+
+
+// ====================================
+// import
+// ====================================
+@import "reset.scss";
+
+
+// ====================================
+// base
+// ====================================
+* {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  /* フォントレンダリング設定: 1x解像度ではsubpixel、2x以上の解像度ではgrayscale */
+  -webkit-font-smoothing: subpixel-antialiased;
+  -moz-osx-font-smoothing: unset;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+@media only screen and(-webkit-min-device-pixel-ratio: 2),
+(min-resolution: 2dppx) {
+  * {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+html {
+  font-size: 62.5%;
+}
+
+//10px
+
+body {
+  color: $font-color_default;
+  font-family: $font-family_default;
+  font-size: $font-size_default;
+  line-height: 1.5;
+  overflow-x: hidden;
+}
+
+ul {
+  list-style: none;
+}
+
+li {
+  font-size: $font-size_default;
+
+  p {
+    font-size: $font-size_default
+  }
+}
+
+p {
+  font-size: $font-size_default;
+  margin: 1.2rem 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  height: auto;
+  max-width: 100%;
+  vertical-align: bottom;
+}
+
+
+// ====================================
+// wordpress-visual_editor
+// ====================================
+body.wp-autoresize.mce-content-body {
+  padding: 20px !important;
+}
+
+
+// ====================================
+// utility
+// ====================================
+.wrap {
+  margin: 0 auto;
+  max-width: $site-width_default;
+  width: 100%;
+
+  &--blog-detail {
+    max-width: $site-width_large;
+  }
+}
+
+.pagination {
+  font-size: $font-size_l;
+  margin: $space_3l 0;
+  text-align: center;
+
+  &__next {
+    &--large {
+      background-color: #f9f9f9;
+      border: solid 1px #ccc;
+      cursor: pointer;
+
+      a {
+        display: block;
+        padding: $space_m;
+      }
+    }
+  }
+
+  &__detail {
+    display: flex;
+    justify-content: center;
+    margin: $space_xl 0;
+
+    &--btn {
+      border: solid 1px #ccc;
+      cursor: pointer;
+      display: block;
+      height: 50px;
+      line-height: 50px;
+      margin: $space_s;
+      width: 50px;
+
+      a {
+        display: block;
+      }
+    }
+
+    &--current {
+      background-color: #eee;
+    }
+
+    &--om {
+      background-color: #f9f9f9;
+      cursor: auto;
+    }
+  }
+}
+
+.detail {
+  &__pagination {
+    margin: $space_3l 0;
+
+    .fas {
+      display: block;
+      font-size: $font-size_l;
+      line-height: 67px;
+      margin: 0 $space_s;
+    }
+
+    &--prev {
+      display: flex;
+    }
+
+    &--next {
+      display: flex;
+      flex-direction: row-reverse;
+    }
+
+    &-link {
+      display: block;
+      padding: $space_m;
+
+      &:hover {
+        background-color: #f5f8fa;
+      }
+    }
+
+    &-title {
+      line-height: 67px;
+      padding: 0 $space_l;
+    }
+
+    &-img {
+      height: 67px;
+      object-fit: cover;
+      width: 120px;
+    }
+  }
+}
+
+.tac {
+  text-align: center !important;
+}
+
+.tal {
+  text-align: left !important;
+}
+
+
+// ====================================
+// header
+// ====================================
+.header {
+  margin: $space_xl 0 $space_3l;
+
+  &__desc {
+    padding-left: $space_l;
+  }
+
+  &__sns-btn {
+    text-align: right;
+    margin: 0 0 $space_l;
+    padding: 0 $space_xl;
+  }
+
+  &__title {
+    font-size: $font-size_xl;
+  }
+}
+
+.menu {
+  ul {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  li {
+    padding: 0 $space_xl;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+
+// ====================================
+// ヒーローバナー
+// (ヘッダー画像)
+// ====================================
+.hero {
+  &__img {
+    height: 480px;
+    object-fit: cover;
+    width: 100%;
+  }
+}
+
+
+// ====================================
+// widget
+// パネル(1行3列)
+// ====================================
+.intro {
+  margin: $space_3l 0;
+
+  &__title {
+    font-size: $font-size_xl;
+    text-align: center;
+  }
+
+  &__list {
+    display: flex;
+  }
+
+  &__item {
+    padding: $space_l;
+    width: calc(100% / 3);
+
+    &-title {
+      font-size: $font-size_l;
+      text-align: center;
+    }
+
+    &-img {
+      display: block;
+      height: 200px;
+      margin: 0 auto;
+      padding: $space_m;
+      width: auto;
+    }
+  }
+}
+
+
+// ====================================
+// widget
+// カテゴリ一覧表示
+// (アイキャッチ＋タイトル)
+// ====================================
+.home > section:nth-of-type(even) {
+  background-color: #f9f9f9;
+}
+
+.works {
+  margin: $space_3l 0;
+
+  &__title {
+    font-size: $font-size_xl;
+    text-align: center;
+  }
+
+  &__list {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  &__item {
+    padding: $space_m;
+    width: calc(100% / 3);
+    transition: all .7s;
+
+    &:hover {
+      background-color: #f5f8fa;
+    }
+
+    &-img {
+      height: 200px;
+      object-fit: contain;
+    }
+
+    &-title {
+      color: #fff;
+      line-height: 40px;
+      text-align: center;
+    }
+  }
+
+  figure {
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+  }
+
+  figcaption {
+    position: absolute;
+    bottom: -40px;
+    left: 0;
+    z-index: 2;
+    width: 100%;
+    height: 40px;
+    background: rgba(0, 0, 0, .8);
+    transition: all .3s;
+  }
+
+  figure:hover figcaption {
+    bottom: 0;
+  }
+}
+
+
+// ====================================
+// widget
+// カテゴリ一覧表示
+// (アイキャッチ＋タイトル＋文章)
+// ====================================
+.blog {
+  margin: $space_3l 0;
+
+  &__title {
+    font-size: $font-size_xl;
+    text-align: center;
+  }
+
+  &__list {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  &__item {
+    border-radius: 2px;
+    padding: $space_m;
+    width: calc(100% / 3);
+
+    &-link {
+      background-color: #fff;
+      display: block;
+      box-shadow: 0 0 10px 0 rgba(33, 33, 33, 0.14);
+      transition: all .3s ease-out;
+
+      &:hover {
+        box-shadow: 0 3px 20px 0 rgba(0, 0, 0, 0.2);
+      }
+    }
+
+    &-img {
+      border-radius: 2px;
+      display: block;
+      height: 200px;
+      margin: 0 auto;
+      object-fit: cover;
+    }
+
+    &-title {
+      font-size: 2rem;
+      font-weight: bold;
+      overflow: hidden;
+      padding: $space_m;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    &-text {
+      height: 200px;
+      padding: 0 $space_m;
+    }
+  }
+}
+
+
+// ====================================
+// footer
+// ====================================
+.footer {
+  margin: 80px 0 $space_xl;
+
+  &__wrap {
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+
+// ====================================
+// template - about.php
+// ====================================
+.about {
+  margin: $space_3l 0;
+
+  &__title {
+    font-size: $font-size_xl;
+  }
+
+  &__text {
+    margin: $space_xxl 0;
+  }
+
+  &__profile {
+    display: flex;
+
+    &--image {
+      display: block;
+      height: 150px;
+      object-fit: cover;
+      width: 150px;
+    }
+
+    &--detail {
+      padding-left: $space_xxl;
+
+      th {
+        text-align: left;
+      }
+
+      td {
+        padding-left: $space_m;
+      }
+    }
+  }
+}
+
+
+// ====================================
+// template - contact.php
+// ====================================
+.contact {
+  margin: $space_3l 0;
+
+  &__title {
+    font-size: $font-size_xl;
+  }
+
+  .wpcf7 {
+    margin: $space_3l 0;
+
+    &-text {
+      border: solid 1px #d3d3d3;
+      font-size: $font-size_default;
+      padding: $space_s;
+    }
+
+    &-textarea {
+      border: solid 1px #d3d3d3;
+      font-size: $font-size_default;
+      padding: $space_s;
+    }
+
+    &-submit {
+      padding: 4px 16px;
+      font-size: 1.6rem;
+      cursor: pointer;
+      background-color: #fff;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+
+      &:hover {
+        background-color: #f5f8fa;
+      }
+    }
+  }
+}
+
+
+// ====================================
+// template - blog.php
+// ====================================
+.blog-page {
+  margin: $space_3l 0;
+
+  &__title {
+    font-size: $font-size_xl;
+  }
+
+  &__list {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  &__item {
+    border-radius: 2px;
+    box-shadow: 0 0 3px 0 rgba(51, 51, 51, 1);
+    height: 600px;
+    //position: relative;
+    transition: all .7s;
+    margin: $space_m;
+    width: calc(100% / 3 - #{$space_xl});
+
+    &:hover {
+      box-shadow: 0 3px 20px 0 rgba(51, 51, 51, .5);
+    }
+
+    &-img {
+      display: block;
+      height: 300px;
+      margin: 0 auto;
+      object-fit: cover;
+      width: auto;
+    }
+
+    &-desc {
+      display: flex;
+      flex-direction: column;
+      height: 300px;
+      justify-content: space-between;
+    }
+
+    &-title {
+      font-size: 2rem;
+      font-weight: bold;
+      overflow: hidden;
+      padding: $space_m;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    &-text {
+      padding: $space_m;
+      //@include text-truncate(16, 1.5, 7, #fff);
+    }
+
+    &-timestamp {
+      //bottom: 0;
+      padding: $space_m;
+      //position: absolute;
+    }
+  }
+}
+
+
+// ====================================
+// single.php
+// ====================================
+.blog-detail {
+  &__title {
+    font-size: $font-size_xl;
+    text-align: center;
+  }
+
+  &__timestamp {
+    text-align: center;
+  }
+
+  &__img {
+    display: block;
+    //height: 552px;
+    height: auto;
+    margin: 0 auto;
+    max-width: 100%;
+    //object-fit: cover;
+    //width: auto;
+  }
+
+  //記事本文
+  &__text {
+    padding: $space_xxl 0;
+    //見出し
+    h2 {
+      background-color: #f6f6f6;
+      font-size: $font-size_l;
+      font-weight: bold;
+      padding: .5em .75em;
+      margin: $space_3l 0 $space_xl;
+    }
+
+    h3 {
+      background-color: #f6f6f6;
+      border-left: 6px solid #ccc;
+      font-weight: bold;
+      padding: .5em .75em;
+      margin: 35px 0 $space_xl;
+    }
+
+    h4 {
+      border-left: 6px solid #ccc;
+      font-weight: bold;
+      padding: .25em 0 .25em .75em;
+      margin: 35px 0 $space_xl;
+    }
+
+    h5 {
+      border-top: 1px solid #ccc;
+      border-bottom: 1px solid #ccc;
+      font-weight: bold;
+      padding: .5em 0;
+      margin: 35px 0 $space_xl;
+    }
+
+    h6 {
+      border-bottom: 1px solid #ccc;
+      font-weight: bold;
+      padding-bottom: .5em;
+      margin: 35px 0 $space_xl;
+    }
+
+    //引用文
+    blockquote {
+      position: relative;
+      padding: 10px 15px 10px 60px;
+      box-sizing: border-box;
+      font-style: italic;
+      background: #efefef;
+      color: #555;
+
+      &:before {
+        display: inline-block;
+        position: absolute;
+        top: 18px;
+        left: 15px;
+        vertical-align: middle;
+        content: '\f10d';
+        font-family: 'Font Awesome 5 Free';
+        color: #cfcfcf;
+        font-size: 30px;
+        line-height: 1;
+        font-weight: 900;
+      }
+
+      p {
+        padding: 0;
+        margin: 10px 0;
+        line-height: 1.7;
+      }
+
+      cite {
+        display: block;
+        text-align: right;
+        color: #888888;
+        font-size: 0.9em;
+      }
+    }
+
+    //テーブル
+    table {
+      font-family: Arial, Helvetica, sans-serif;
+      color: #666;
+      font-size: 12px;
+      text-shadow: 1px 1px 0px #fff;
+      background: #eaebec;
+      margin: 20px;
+      border: #ccc 1px solid;
+
+      -moz-border-radius: 3px;
+      -webkit-border-radius: 3px;
+      border-radius: 3px;
+
+      -moz-box-shadow: 0 1px 2px #d1d1d1;
+      -webkit-box-shadow: 0 1px 2px #d1d1d1;
+      box-shadow: 0 1px 2px #d1d1d1;
+
+      &:first-child {
+        text-align: left;
+        padding-left: 20px;
+        border-left: 0;
+      }
+
+      th {
+        padding: 21px 25px 22px 25px;
+        border-top: 1px solid #fafafa;
+        border-bottom: 1px solid #e0e0e0;
+
+        background: #ededed;
+        background: -webkit-gradient(linear, left top, left bottom, from(#ededed), to(#ebebeb));
+        background: -moz-linear-gradient(top, #ededed, #ebebeb);
+
+        &:first-child {
+          //text-align: left;
+          padding-left: 20px;
+        }
+      }
+
+      tr {
+        text-align: center;
+        padding-left: 20px;
+
+        &:first-child {
+          th:first-child {
+            -moz-border-radius-topleft: 3px;
+            -webkit-border-top-left-radius: 3px;
+            border-top-left-radius: 3px;
+          }
+
+          th:last-child {
+            -moz-border-radius-topright: 3px;
+            -webkit-border-top-right-radius: 3px;
+            border-top-right-radius: 3px;
+          }
+        }
+
+        &.even td {
+          background: #f6f6f6;
+          background: -webkit-gradient(linear, left top, left bottom, from(#f8f8f8), to(#f6f6f6));
+          background: -moz-linear-gradient(top, #f8f8f8, #f6f6f6);
+        }
+
+        &:last-child td {
+          border-bottom: 0;
+
+          &:first-child {
+            -moz-border-radius-bottomleft: 3px;
+            -webkit-border-bottom-left-radius: 3px;
+            border-bottom-left-radius: 3px;
+          }
+
+          &:last-child {
+            -moz-border-radius-bottomright: 3px;
+            -webkit-border-bottom-right-radius: 3px;
+            border-bottom-right-radius: 3px;
+          }
+        }
+
+        &:hover {
+          td {
+            background: #f2f2f2;
+            background: -webkit-gradient(linear, left top, left bottom, from(#f2f2f2), to(#f0f0f0));
+            background: -moz-linear-gradient(top, #f2f2f2, #f0f0f0);
+          }
+        }
+      }
+
+      td {
+        padding: 18px;
+        border-top: 1px solid #ffffff;
+        border-bottom: 1px solid #e0e0e0;
+        border-left: 1px solid #e0e0e0;
+
+        background: #fafafa;
+        background: -webkit-gradient(linear, left top, left bottom, from(#fbfbfb), to(#fafafa));
+        background: -moz-linear-gradient(top, #fbfbfb, #fafafa);
+      }
+
+      a {
+        &:link {
+          color: #666;
+          font-weight: bold;
+          text-decoration: none;
+        }
+
+        &:visited {
+          color: #999999;
+          font-weight: bold;
+          text-decoration: none;
+        }
+
+        &:active, &:hover {
+          color: #bd5a35;
+          text-decoration: underline;
+        }
+      }
+    }
+
+    //dl,dt,dd
+    dl.wrapper1 {
+      margin: 0;
+      padding: .5em;
+      width: 460px;
+      background-color: #fff;
+      font-size: 1em;
+      font-family: Georgia, "Times New Roman", Times, serif;
+    }
+
+    dt {
+      margin: 0;
+      padding: .5em;
+      font-weight: bold;
+      background-color: #e0e0e0;
+    }
+
+    dd {
+      margin: 0;
+      padding: 0;
+      padding-top: .5em;
+      padding-bottom: .5em;
+    }
+
+    dd .div1 {
+      padding-left: .5em;
+      border-left: 1px solid #333;
+      font-size: .9em;
+      clear: both;
+    }
+
+    dd .div2 {
+      color: #900;
+      font-size: .76em;
+      margin-top: .5em;
+      margin-bottom: .5em;
+      clear: both;
+    }
+
+    //strong
+    strong {
+      font-weight: bold;
+    }
+
+    //address
+    address {
+      display: block;
+      font-style: italic;
+    }
+
+    //anchor
+    a {
+      color: #1967d2;
+
+      &:hover {
+        color: #e53900;
+      }
+    }
+
+    //code
+    code {
+      background-color: #eee;
+      border-radius: 3px;
+      font-family: courier, monospace;
+      padding: 0 3px;
+    }
+
+    //em, cite, var
+    em, cite, var {
+      font-style: italic;
+    }
+
+    //abbr
+    abbr {
+      font-style: italic;
+      font-weight: 100;
+    }
+
+    //kbd
+    kbd {
+      background-color: #eee;
+      border-radius: 3px;
+      border: 1px solid #b4b4b4;
+      box-shadow: 0 1px 1px rgba(0, 0, 0, .2), 0 2px 0 0 rgba(255, 255, 255, .7) inset;
+      color: #333;
+      display: inline-block;
+      font-family: monospace;
+      font-size: .85em;
+      font-weight: 700;
+      line-height: 1;
+      padding: 2px 4px;
+      white-space: nowrap;
+    }
+
+    //pre
+    pre {
+      display: block;
+      font-family: monospace;
+      font-size: .9em;
+      margin: 0;
+      white-space: pre;
+    }
+
+    //q
+    q {
+      display: inline;
+      font-style: italic;
+    }
+
+    //sub
+    sub {
+      font-size: smaller;
+      vertical-align: sub;
+    }
+
+    //sup
+    sup {
+      font-size: smaller;
+      vertical-align: super;
+    }
+
+    //ul, li
+    ul {
+      padding-left: 1.5em;
+
+      li {
+        position: relative;
+
+        &::after {
+          display: block;
+          content: '';
+          position: absolute;
+          top: .5em;
+          left: -1em;
+          width: 6px;
+          height: 6px;
+          background-color: #666;
+          border-radius: 100%;
+        }
+      }
+
+      ol li {
+        padding-left: initial;
+      }
+    }
+
+    //ol, li
+    ol {
+      counter-reset: section;
+      list-style-type: none;
+
+      li {
+        padding-left: 1em;
+
+        &::before {
+          counter-increment: section;
+          content: counters(section, ".") " ";
+        }
+      }
+
+      ul li {
+        padding-left: initial;
+      }
+    }
+
+    //右寄せ,左寄せ,中央寄せ
+    .alignleft {
+      float: left;
+      margin-right: $space_m;
+
+      &::after {
+        content: '';
+        display: block;
+        clear: both;
+      }
+    }
+
+    .alignright {
+      float: right;
+      margin-left: $space_m;
+
+      &::after {
+        content: '';
+        display: block;
+        clear: both;
+      }
+    }
+
+    div.aligncenter {
+      margin: 0 auto;
+    }
+
+    img.aligncenter {
+      text-align: center;
+    }
+
+    //キャプション
+    .wp-caption {
+      background-color: #f6f6f6;
+      margin-bottom: 1em;
+      max-width: 100% !important;
+      padding: $space_s;
+
+      &-text {
+        font-size: .8em;
+        text-align: center;
+      }
+    }
+  }
+}
+
+
+// ====================================
+// template - portfolio.php
+// ====================================
+.portfolio {
+  margin: $space_3l 0;
+
+  &__title {
+    font-size: $font-size_xl;
+  }
+
+  &__item {
+    margin: 60px 0;
+
+    &-title {
+      margin: $space_m 0;
+    }
+
+    &-img {
+      display: block;
+      margin: 0 auto;
+    }
+
+    &-title {
+      font-weight: bold;
+    }
+  }
+
+  a {
+    &:hover .portfolio__item-title {
+      text-decoration: underline;
+    }
+  }
+}
+
+
+// ====================================
+// 404 - page not fond
+// ====================================
+.not-found {
+  &__title {
+    font-size: $font-size_l;
+  }
+
+  &__link {
+    color: #1967d2;
+
+    &:hover {
+      color: #e53900;
+    }
+  }
+}

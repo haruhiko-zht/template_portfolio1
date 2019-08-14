@@ -1,0 +1,287 @@
+@charset "UTF-8";
+/*
+  Theme Name: portfolio-1
+  Author: haru_zyohatu
+  Description: wordpress template for your portfolio site
+*/
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline; }
+
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+  display: block; }
+
+body {
+  line-height: 1; }
+
+ol, ul {
+  list-style: none; }
+
+blockquote, q {
+  quotes: none; }
+
+blockquote:before, blockquote:after, q:before, q:after {
+  content: '';
+  content: none; }
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0; }
+
+* {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  /* フォントレンダリング設定: 1x解像度ではsubpixel、2x以上の解像度ではgrayscale */
+  -webkit-font-smoothing: subpixel-antialiased;
+  -moz-osx-font-smoothing: unset;
+  word-wrap: break-word;
+  overflow-wrap: break-word; }
+
+@media only screen and (-webkit-min-device-pixel-ratio: 2), (-webkit-min-device-pixel-ratio: 2), (min-resolution: 2dppx) {
+  * {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale; }
+}
+
+html {
+  font-size: 62.5%; }
+
+body {
+  color: #333;
+  font-family: 游ゴシック体, "Yu Gothic", YuGothic, "ヒラギノ角ゴシック Pro", "Hiragino Kaku Gothic Pro", メイリオ, Meiryo, Osaka, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
+  font-size: 1.6rem;
+  line-height: 1.5;
+  overflow-x: hidden; }
+
+ul {
+  list-style: none; }
+
+li {
+  font-size: 1.6rem; }
+li p {
+  font-size: 1.6rem; }
+
+p {
+  font-size: 1.6rem;
+  margin: 1.2rem 0; }
+
+a {
+  color: inherit;
+  text-decoration: none; }
+
+img {
+  max-width: 100%;
+  vertical-align: bottom; }
+
+.wrap {
+  margin: 0 auto;
+  max-width: 960px;
+  width: 100%; }
+
+.pagination {
+  font-size: 2.6rem;
+  margin: 40px 0;
+  text-align: center; }
+.pagination__next--large {
+  background-color: #dcdcdc;
+  border: solid 1px #333;
+  cursor: pointer;
+  padding: 10px; }
+.pagination__detail {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0; }
+.pagination__detail--btn {
+  border: solid 1px #333;
+  cursor: pointer;
+  display: block;
+  height: 50px;
+  line-height: 50px;
+  margin: 5px;
+  width: 50px; }
+.pagination__detail--current {
+  background-color: #dcdcdc; }
+.pagination__detail--om {
+  background-color: #f5f5f5;
+  cursor: auto; }
+
+.detail__pagination {
+  margin: 40px 0; }
+.detail__pagination--prev {
+  display: flex; }
+.detail__pagination--next {
+  display: flex;
+  flex-direction: row-reverse; }
+.detail__pagination-title {
+  line-height: 67px;
+  padding: 0 15px; }
+.detail__pagination-img {
+  height: 67px;
+  width: 120px; }
+
+.header {
+  margin: 40px 0; }
+.header__sns-btn {
+  text-align: right;
+  margin: 15px 0;
+  padding: 0 20px; }
+.header__title {
+  font-size: 4.2rem;
+  margin-top: 40px; }
+
+.menu {
+  display: flex;
+  justify-content: flex-end; }
+.menu__item {
+  padding: 0 20px; }
+
+.hero__img {
+  height: 420px;
+  object-fit: cover;
+  width: 100%; }
+
+.intro {
+  margin: 40px 0; }
+.intro__title {
+  font-size: 4.2rem;
+  text-align: center; }
+.intro__list {
+  display: flex;
+  justify-content: space-between; }
+.intro__item {
+  padding: 15px; }
+.intro__item-title {
+  font-size: 2.6rem;
+  text-align: center; }
+.intro__item-img {
+  display: block;
+  height: 200px;
+  margin: 0 auto;
+  width: auto; }
+
+.works {
+  margin: 40px 0; }
+.works__title {
+  font-size: 4.2rem;
+  text-align: center; }
+.works__list {
+  display: flex;
+  flex-wrap: wrap; }
+.works__item {
+  padding: 10px;
+  width: calc(100% / 3); }
+
+.blog {
+  margin: 40px 0; }
+.blog__title {
+  font-size: 4.2rem;
+  text-align: center; }
+.blog__list {
+  display: flex;
+  flex-wrap: wrap; }
+.blog__item {
+  padding: 10px;
+  width: calc(100% / 3); }
+.blog__item-more {
+  display: block;
+  padding: 0 10px;
+  text-align: right; }
+
+.footer {
+  margin: 40px 0; }
+.footer__wrap {
+  display: flex;
+  justify-content: space-between; }
+
+.about {
+  margin: 40px 0; }
+.about__title {
+  font-size: 4.2rem; }
+.about__profile {
+  display: flex; }
+.about__profile--image {
+  display: block;
+  height: 150px;
+  object-fit: cover;
+  width: 150px; }
+.about__profile--detail {
+  padding-left: 30px; }
+.about__profile--detail th {
+  text-align: left; }
+.about__profile--detail td {
+  padding-left: 10px; }
+
+.contact {
+  margin: 40px 0; }
+.contact__title {
+  font-size: 4.2rem; }
+.contact__form {
+  margin: 40px 0; }
+.contact__form-group {
+  margin: 10px 0; }
+.contact__form--title {
+  display: block; }
+.contact__form--text {
+  border: solid 1px #d3d3d3;
+  padding: 5px;
+  width: 40%; }
+.contact__form--textarea {
+  border: solid 1px #d3d3d3;
+  height: 100px;
+  padding: 5px;
+  resize: none;
+  width: 40%; }
+
+.blog-page {
+  margin: 40px 0; }
+.blog-page__title {
+  font-size: 4.2rem; }
+.blog-page__list {
+  display: flex;
+  flex-wrap: wrap; }
+.blog-page__item {
+  box-shadow: 0 0 2px #333;
+  height: 600px;
+  position: relative;
+  margin: 10px;
+  width: calc(100% / 3 - 20px); }
+.blog-page__item-img {
+  height: 300px;
+  object-fit: cover; }
+.blog-page__item-title {
+  font-size: 2.6rem;
+  padding: 10px; }
+.blog-page__item-text {
+  padding: 10px; }
+.blog-page__item-timestamp {
+  bottom: 0;
+  padding: 10px;
+  position: absolute; }
+
+.blog-detail__title {
+  font-size: 4.2rem;
+  text-align: center; }
+
+.blog-detail__timestamp {
+  text-align: center; }
+
+.blog-detail__text {
+  padding: 30px 0; }
+
+.portfolio {
+  margin: 40px 0; }
+.portfolio__title {
+  font-size: 4.2rem; }
+.portfolio__item {
+  margin: 60px 0; }
+.portfolio__item-title {
+  margin: 10px 0; }
+.portfolio__item-img {
+  display: block;
+  margin: 0 auto; }
+.portfolio__item-title {
+  font-weight: bold; }
