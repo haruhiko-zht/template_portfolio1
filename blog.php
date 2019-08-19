@@ -43,7 +43,7 @@ $the_query = new WP_Query($args);
                 <!-- ページタイトル -->
                 <h1 class="blog-page__title"><?php the_title(); ?></h1>
 
-                <!-- ページ本文　-->
+                <!-- ページ本文 -->
                 <div class="blog-page__text"><?php the_content(); ?></div>
 
                 <!-- 記事一覧 -->
@@ -62,24 +62,24 @@ $the_query = new WP_Query($args);
                                     <?php endif; ?>
 
                                     <!-- 記事詳細 -->
-                                    <div class="blog-page__item-desc">
-                                        <div class="blog-page__item--title-text">
-                                            <!-- 記事タイトル -->
-                                            <h1 class="blog-page__item-title"><?php the_title(); ?></h1>
+                                    <!--                                    <div class="blog-page__item-desc">-->
+                                    <!--                                        <div class="blog-page__item--title-text">-->
+                                    <!-- 記事タイトル -->
+                                    <h1 class="blog-page__item-title"><?php the_title(); ?></h1>
 
-                                            <!-- 記事文章（一部or抜粋） -->
-                                            <div class="blog-page__item-text">
-                                                <?php if (is_single()): ?>
-                                                    <?php the_content(); ?>
-                                                <?php else: ?>
-                                                    <?php the_excerpt(); ?>
-                                                <?php endif; ?>
-                                            </div>
-                                        </div>
-
-                                        <!-- 投稿日 -->
-                                        <div class="blog-page__item-timestamp"><?php the_time("Y年n月d日"); ?></div>
+                                    <!-- 記事文章（一部or抜粋） -->
+                                    <div class="blog-page__item-text">
+                                        <?php if (is_single()): ?>
+                                            <?php the_content(); ?>
+                                        <?php else: ?>
+                                            <?php the_excerpt(); ?>
+                                        <?php endif; ?>
                                     </div>
+                                    <!--                                        </div>-->
+
+                                    <!-- 投稿日 -->
+                                    <div class="blog-page__item-timestamp"><?php the_time("Y年n月d日"); ?></div>
+                                    <!--                                    </div>-->
                                 </a>
                             </article>
                         <?php endwhile; ?>

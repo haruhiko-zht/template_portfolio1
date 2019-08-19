@@ -91,6 +91,8 @@ $breakpoints: (
 // import
 // ====================================
 @import "reset.scss";
+@import "font-awesome/fontawesome.scss";
+@import "font-awesome/solid.scss";
 
 
 // ====================================
@@ -126,9 +128,12 @@ body {
   font-size: $font-size_default;
   line-height: 1.5;
   overflow-x: hidden;
+  @include mq(sm) {
+    background-color: #e6ecf0;
+  }
 }
 
-ul {
+ul, li {
   list-style: none;
 }
 
@@ -168,6 +173,14 @@ body.wp-autoresize.mce-content-body {
 // ====================================
 // utility
 // ====================================
+.main {
+  @include mq(sm) {
+    border-radius: 6px;
+    background-color: #fff;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .16), 0 0 0 1px rgba(0, 0, 0, .08);
+  }
+}
+
 .wrap {
   margin: 0 auto;
   max-width: $site-width_default;
@@ -182,6 +195,14 @@ body.wp-autoresize.mce-content-body {
   font-size: $font-size_l;
   margin: $space_3l 0;
   text-align: center;
+  @include mq(xl) {
+    padding: 0 $space_l;
+  }
+  @include mq(sm) {
+    font-size: 2rem;
+    margin: $space_xl 0;
+    padding: $space_l;
+  }
 
   &__next {
     &--large {
@@ -229,6 +250,10 @@ body.wp-autoresize.mce-content-body {
 .detail {
   &__pagination {
     margin: $space_3l 0;
+    @include mq(sm) {
+      padding: $space_m;
+      margin: $space_xl 0;
+    }
 
     .fas {
       display: block;
@@ -239,16 +264,23 @@ body.wp-autoresize.mce-content-body {
 
     &--prev {
       display: flex;
+      align-items: center;
     }
 
     &--next {
       display: flex;
       flex-direction: row-reverse;
+      align-items: center;
     }
 
     &-link {
       display: block;
       padding: $space_m;
+      @include mq(sm) {
+        padding: $space_m $space_s;
+        border-radius: 4px;
+        box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .16), 0 0 0 1px rgba(0, 0, 0, .08);
+      }
 
       &:hover {
         background-color: #f5f8fa;
@@ -256,14 +288,21 @@ body.wp-autoresize.mce-content-body {
     }
 
     &-title {
-      line-height: 67px;
+      //line-height: 67px;
       padding: 0 $space_l;
+      @include mq(sm) {
+        font-size: 1.3rem;
+      }
     }
 
     &-img {
       height: 67px;
       object-fit: cover;
       width: 120px;
+      @include mq(sm) {
+        width: 30%;
+        //height: auto;
+      }
     }
   }
 }
@@ -283,22 +322,47 @@ body.wp-autoresize.mce-content-body {
 .header {
   margin: $space_xl 0 $space_3l;
 
+  @include mq(xl) {
+    padding: 0 $space_l;
+  }
+  @include mq(sm) {
+    margin: initial;
+    padding: $space_xl $space_l $space_3l;
+    background-color: #fff;
+  }
+
   &__desc {
-    padding-left: $space_l;
+    padding-left: $space_s;
+    @include mq(sm) {
+      font-size: 1.3rem;
+      padding-left: 0;
+      text-align: center;
+    }
   }
 
   &__sns-btn {
     text-align: right;
     margin: 0 0 $space_l;
     padding: 0 $space_xl;
+    @include mq(sm) {
+      display: none;
+    }
   }
 
   &__title {
     font-size: $font-size_xl;
+    @include mq(sm) {
+      font-size: $font-size_l;
+      text-align: center;
+    }
   }
 }
 
 .menu {
+  @include mq(sm) {
+    display: none;
+  }
+
   ul {
     display: flex;
     justify-content: flex-end;
@@ -319,10 +383,17 @@ body.wp-autoresize.mce-content-body {
 // (ヘッダー画像)
 // ====================================
 .hero {
+  @include mq(sm) {
+    display: none;
+  }
+
   &__img {
     height: 480px;
     object-fit: cover;
     width: 100%;
+    @include mq(sm) {
+      height: auto;
+    }
   }
 }
 
@@ -333,23 +404,38 @@ body.wp-autoresize.mce-content-body {
 // ====================================
 .intro {
   margin: $space_3l 0;
+  @include mq(sm) {
+    margin: $space_xl 0;
+  }
 
   &__title {
     font-size: $font-size_xl;
     text-align: center;
+    @include mq(sm) {
+      font-size: $font-size_l;
+    }
   }
 
   &__list {
     display: flex;
+    @include mq(md) {
+      flex-direction: column;
+    }
   }
 
   &__item {
     padding: $space_l;
     width: calc(100% / 3);
+    @include mq(md) {
+      width: 100%;
+    }
 
     &-title {
       font-size: $font-size_l;
       text-align: center;
+      @include mq(sm) {
+        font-size: $font-size_default;
+      }
     }
 
     &-img {
@@ -374,10 +460,22 @@ body.wp-autoresize.mce-content-body {
 
 .works {
   margin: $space_3l 0;
+  @include mq(xl) {
+    padding: 0 $space_l;
+  }
+  @include mq(md) {
+    padding: 0 $space_m $space_m;
+  }
+  @include mq(sm) {
+    margin: $space_xl 0;
+  }
 
   &__title {
     font-size: $font-size_xl;
     text-align: center;
+    @include mq(sm) {
+      font-size: $font-size_l;
+    }
   }
 
   &__list {
@@ -386,9 +484,16 @@ body.wp-autoresize.mce-content-body {
   }
 
   &__item {
-    padding: $space_m;
+    padding: $space_s;
     width: calc(100% / 3);
     transition: all .7s;
+    @include mq(md) {
+      width: calc(100% / 2);
+    }
+    @include mq(sm) {
+      width: 100%;
+      padding: initial;
+    }
 
     &:hover {
       background-color: #f5f8fa;
@@ -422,6 +527,9 @@ body.wp-autoresize.mce-content-body {
     height: 40px;
     background: rgba(0, 0, 0, .8);
     transition: all .3s;
+    @include mq(lg) {
+      bottom: 0px;
+    }
   }
 
   figure:hover figcaption {
@@ -437,27 +545,44 @@ body.wp-autoresize.mce-content-body {
 // ====================================
 .blog {
   margin: $space_3l 0;
+  @include mq(sm) {
+    margin: $space_xl 0;
+  }
 
   &__title {
     font-size: $font-size_xl;
     text-align: center;
+    @include mq(sm) {
+      font-size: $font-size_l;
+    }
   }
 
   &__list {
     display: flex;
     flex-wrap: wrap;
+    @include mq(md) {
+      flex-direction: column;
+    }
   }
 
   &__item {
     border-radius: 2px;
     padding: $space_m;
     width: calc(100% / 3);
+    @include mq(md) {
+      width: 100%;
+    }
 
     &-link {
       background-color: #fff;
       display: block;
       box-shadow: 0 0 10px 0 rgba(33, 33, 33, 0.14);
       transition: all .3s ease-out;
+      @include mq(md) {
+        display: grid;
+        grid-template-rows: 40% 60%;
+        grid-template-columns: 40% 60%;
+      }
 
       &:hover {
         box-shadow: 0 3px 20px 0 rgba(0, 0, 0, 0.2);
@@ -470,6 +595,14 @@ body.wp-autoresize.mce-content-body {
       height: 200px;
       margin: 0 auto;
       object-fit: cover;
+      @include mq(md) {
+        padding: $space_m;
+        grid-row: 1/2;
+        grid-column: 1/2;
+      }
+      @include mq(sm) {
+        height: auto;
+      }
     }
 
     &-title {
@@ -479,11 +612,34 @@ body.wp-autoresize.mce-content-body {
       padding: $space_m;
       text-overflow: ellipsis;
       white-space: nowrap;
+      @include mq(md) {
+        grid-row: 1/2;
+        grid-column: 2/3;
+        text-overflow: initial;
+        white-space: initial;
+      }
+      @include mq(sm) {
+        font-size: 1.6rem;
+      }
     }
 
     &-text {
       height: 200px;
       padding: 0 $space_m;
+      @include mq(lg) {
+        height: 260px;
+      }
+      @include mq(md) {
+        height: initial;
+        grid-row: 2/3;
+        grid-column: 1/3;
+      }
+
+      p {
+        @include mq(sm) {
+          font-size: 1.3rem;
+        }
+      }
     }
   }
 }
@@ -494,10 +650,153 @@ body.wp-autoresize.mce-content-body {
 // ====================================
 .footer {
   margin: 80px 0 $space_xl;
+  @include mq(xl) {
+    padding: 0 $space_l;
+  }
+  @include mq(sm) {
+    background-color: #fff;
+    padding: $space_l;
+    margin: initial;
+  }
 
   &__wrap {
     display: flex;
     justify-content: space-between;
+    @include mq(lg) {
+      display: block;
+    }
+  }
+
+  &__copyright {
+    @include mq(lg) {
+      padding-top: $space_3l;
+      text-align: center;
+    }
+    @include mq(sm) {
+      padding-top: initial;
+    }
+  }
+}
+
+
+// ====================================
+// menu for smart-phone
+// ====================================
+.sp-menu {
+  background-color: #eee;
+  display: none;
+  position: sticky;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  min-height: 50px;
+  z-index: 3;
+  @include mq(sm) {
+    display: flex;
+  }
+
+  &__item {
+    width: calc(100% / 5);
+    text-align: center;
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    &-wrap {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    &-title {
+      font-size: 1rem;
+    }
+  }
+}
+
+.sp-modal {
+  &__back {
+    display: none;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, .5);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 4;
+    transition: .3s ease-in-out;
+  }
+
+  &__search {
+    display: none;
+    width: 90vw;
+    position: fixed;
+    top: 40%;
+    left: 5%;
+    right: 5%;
+    z-index: 5;
+  }
+
+  &__menu {
+    display: none;
+    max-width: 80vw;
+    width: 100%;
+    height: 100vh;
+    background-color: #fff;
+    position: fixed;
+    top: 0;
+    z-index: 5;
+    overflow: scroll;
+
+    &-times {
+      margin: $space_s 0;
+      font-size: 2.6rem;
+      text-align: center;
+    }
+
+    &-list {
+      padding: $space_l;
+      line-height: 2;
+    }
+
+    &-sns-btn {
+      padding: 0 $space_l;
+    }
+  }
+}
+
+.search__sp {
+  &-form {
+    position: relative;
+  }
+
+  &-field {
+    font-size: 1.6rem;
+    width: 100%;
+    padding: 10px;
+    border: solid 1px #bbb;
+    border-radius: 4px;
+  }
+
+  &-submit {
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    font-size: 1.4em;
+    position: absolute;
+    top: -3px;
+    right: 3%;
+    margin-top: 10px;
+    padding: 0;
+    cursor: pointer;
+    color: #ccc;
+    border: none;
+    background: transparent;
+
+    &:hover {
+      opacity: .6;
+    }
   }
 }
 
@@ -507,13 +806,29 @@ body.wp-autoresize.mce-content-body {
 // ====================================
 .about {
   margin: $space_3l 0;
+  @include mq(xl) {
+    padding: 0 $space_l;
+  }
+  @include mq(md) {
+    padding: 0 $space_m;
+  }
+  @include mq(sm) {
+    padding: $space_m;
+    margin: $space_xl 0;
+  }
 
   &__title {
     font-size: $font-size_xl;
+    @include mq(sm) {
+      font-size: $font-size_l;
+    }
   }
 
   &__text {
     margin: $space_xxl 0;
+    @include mq(sm) {
+      margin: initial;
+    }
   }
 
   &__profile {
@@ -546,24 +861,43 @@ body.wp-autoresize.mce-content-body {
 // ====================================
 .contact {
   margin: $space_3l 0;
+  @include mq(xl) {
+    padding: 0 $space_l;
+  }
+  @include mq(sm) {
+    padding: $space_m;
+    margin: $space_xl 0;
+  }
 
   &__title {
     font-size: $font-size_xl;
+    @include mq(sm) {
+      font-size: $font-size_l;
+    }
   }
 
   .wpcf7 {
     margin: $space_3l 0;
+    @include mq(sm) {
+      margin: $space_xl 0;
+    }
 
     &-text {
       border: solid 1px #d3d3d3;
       font-size: $font-size_default;
       padding: $space_s;
+      @include mq(sm) {
+        width: 100%;
+      }
     }
 
     &-textarea {
       border: solid 1px #d3d3d3;
       font-size: $font-size_default;
       padding: $space_s;
+      @include mq(sm) {
+        width: 100%;
+      }
     }
 
     &-submit {
@@ -573,6 +907,9 @@ body.wp-autoresize.mce-content-body {
       background-color: #fff;
       border: 1px solid #ccc;
       border-radius: 3px;
+      @include mq(sm) {
+        width: 100%;
+      }
 
       &:hover {
         background-color: #f5f8fa;
@@ -587,9 +924,18 @@ body.wp-autoresize.mce-content-body {
 // ====================================
 .blog-page {
   margin: $space_3l 0;
+  @include mq(xl) {
+    padding: 0 $space_m;
+  }
+  @include mq(sm) {
+    margin: $space_xl 0;
+  }
 
   &__title {
     font-size: $font-size_xl;
+    @include mq(sm) {
+      font-size: $font-size_l;
+    }
   }
 
   &__list {
@@ -605,9 +951,24 @@ body.wp-autoresize.mce-content-body {
     transition: all .7s;
     margin: $space_m;
     width: calc(100% / 3 - #{$space_xl});
+    @include mq(md) {
+      margin: $space_m 0;
+      width: 100%;
+      height: initial;
+    }
 
     &:hover {
       box-shadow: 0 3px 20px 0 rgba(51, 51, 51, .5);
+    }
+
+    &--link {
+      display: grid;
+      grid-template-rows: 300px 50px 200px 50px;
+      grid-template-columns: 100%;
+      @include mq(md) {
+        grid-template-rows: 40% 60% 10%;
+        grid-template-columns: 40% 60%;
+      }
     }
 
     &-img {
@@ -616,14 +977,29 @@ body.wp-autoresize.mce-content-body {
       margin: 0 auto;
       object-fit: cover;
       width: auto;
+      @include mq(lg) {
+        height: 250px;
+      }
+      @include mq(md) {
+        grid-row: 1 / 2;
+        grid-column: 1 / 2;
+        height: 200px;
+        padding: $space_m;
+      }
+      @include mq(sm) {
+        height: auto;
+      }
     }
 
-    &-desc {
-      display: flex;
-      flex-direction: column;
-      height: 300px;
-      justify-content: space-between;
-    }
+    //&-desc {
+    //  display: flex;
+    //  flex-direction: column;
+    //  height: 300px;
+    //  justify-content: space-between;
+    //  @include mq(lg) {
+    //    height: 350px;
+    //  }
+    //}
 
     &-title {
       font-size: 2rem;
@@ -632,17 +1008,43 @@ body.wp-autoresize.mce-content-body {
       padding: $space_m;
       text-overflow: ellipsis;
       white-space: nowrap;
+      @include mq(md) {
+        grid-row: 1 / 2;
+        grid-column: 2 / 3;
+        text-overflow: initial;
+        white-space: initial;
+      }
+      @include mq(sm) {
+        font-size: $font-size_default;
+      }
     }
 
     &-text {
-      padding: $space_m;
+      padding: 0 $space_m;
       //@include text-truncate(16, 1.5, 7, #fff);
+      @include mq(md) {
+        grid-row: 2 / 3;
+        grid-column: 1 / 3;
+      }
+
+      p {
+        @include mq(sm) {
+          font-size: 1.3rem;
+        }
+      }
     }
 
     &-timestamp {
       //bottom: 0;
       padding: $space_m;
       //position: absolute;
+      @include mq(md) {
+        grid-row: 3 / 4;
+        grid-column: 1 / 3;
+      }
+      @include mq(sm) {
+        font-size: 1.3rem;
+      }
     }
   }
 }
@@ -652,13 +1054,28 @@ body.wp-autoresize.mce-content-body {
 // single.php
 // ====================================
 .blog-detail {
+  margin: $space_3l 0;
+  @include mq(lg) {
+    padding: 0 $space_l;
+  }
+  @include mq(sm) {
+    padding: $space_m;
+    margin: $space_xl 0;
+  }
+
   &__title {
     font-size: $font-size_xl;
     text-align: center;
+    @include mq(sm) {
+      font-size: 2rem;
+    }
   }
 
   &__timestamp {
     text-align: center;
+    @include mq(sm) {
+      font-size: 1.3rem;
+    }
   }
 
   &__img {
@@ -674,6 +1091,9 @@ body.wp-autoresize.mce-content-body {
   //記事本文
   &__text {
     padding: $space_xxl 0;
+    @include mq(sm) {
+      padding: initial;
+    }
     //見出し
     h2 {
       background-color: #f6f6f6;
@@ -681,6 +1101,9 @@ body.wp-autoresize.mce-content-body {
       font-weight: bold;
       padding: .5em .75em;
       margin: $space_3l 0 $space_xl;
+      @include mq(sm) {
+        font-size: 2rem;
+      }
     }
 
     h3 {
@@ -750,6 +1173,7 @@ body.wp-autoresize.mce-content-body {
       }
     }
 
+    //TODO: デザインの改善
     //テーブル
     table {
       font-family: Arial, Helvetica, sans-serif;
@@ -963,6 +1387,7 @@ body.wp-autoresize.mce-content-body {
       white-space: nowrap;
     }
 
+    //TODO: はみ出てしまう問題を改善
     //pre
     pre {
       display: block;
@@ -1086,13 +1511,29 @@ body.wp-autoresize.mce-content-body {
 // ====================================
 .portfolio {
   margin: $space_3l 0;
+  @include mq(xl) {
+    padding: 0 $space_l;
+  }
+  @include mq(md) {
+    padding: 0 $space_m;
+  }
+  @include mq(sm) {
+    padding: $space_m;
+    margin: $space_xl 0;
+  }
 
   &__title {
     font-size: $font-size_xl;
+    @include mq(sm) {
+      font-size: $font-size_l;
+    }
   }
 
   &__item {
     margin: 60px 0;
+    @include mq(sm) {
+      margin: $space_xxl 0;
+    }
 
     &-title {
       margin: $space_m 0;
@@ -1106,11 +1547,37 @@ body.wp-autoresize.mce-content-body {
     &-title {
       font-weight: bold;
     }
+
+    &-text {
+      p {
+        @include mq(sm) {
+          font-size: 1.3rem;
+        }
+      }
+    }
   }
 
   a {
     &:hover .portfolio__item-title {
       text-decoration: underline;
+    }
+  }
+}
+
+
+// ====================================
+// search results - search.php
+// ====================================
+.search {
+  &__query {
+    @include mq(xl) {
+      padding: $space_l $space_l 0;
+    }
+    @include mq(md) {
+      padding: $space_m $space_m 0;
+    }
+    @include mq(sm) {
+      margin: $space_xl 0;
     }
   }
 }

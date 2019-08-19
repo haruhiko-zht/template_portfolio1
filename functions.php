@@ -87,6 +87,21 @@ function tiny_mce_before_init_custom_demo($mceInit)
 
 
 //=====================================
+// body要素のblogクラスを削除
+//=====================================
+add_filter('body_class', 'remove_body_class');
+function remove_body_class($wp_classes)
+{
+    foreach ($wp_classes as $key => $value) {
+        if ($value == 'blog') {
+            unset($wp_classes[$key]);
+        }
+    }
+    return $wp_classes;
+}
+
+
+//=====================================
 // アイキャッチ画像
 //=====================================
 add_theme_support('post-thumbnails');
@@ -303,8 +318,8 @@ function my_widgets_area()
         'name' => 'SNSボタンエリア',
         'id' => 'widget_header_sns',
         'description' => 'SNSボタンを表示するエリア',
-        'before_widget' => '<div>',
-        'after_widget' => '</div>'
+//        'before_widget' => '<div>',
+//        'after_widget' => '</div>',
     ));
     register_sidebar(array(
         'name' => '【ホーム】上段エリア',
